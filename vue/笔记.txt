@@ -1,0 +1,5 @@
+npm i jquery -s 	下载jquery
+npm install webpack@5.42.1 webpack-cli@4.7.2 -D		下载webpack
+-i 	是 --init的简写
+-s 	是 --save的简写
+-D 	是 --save-dev的简写									下载jquery
