@@ -26,7 +26,7 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n// 1.使用ES6 导入语法，导入jquery\r\n\r\n\r\n// 2.定义jquery入口函数\r\njquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {\r\n    // 3.实现奇偶行变色\r\n    jquery__WEBPACK_IMPORTED_MODULE_0___default()('li:odd').css('background-color', 'cyan')\r\n    jquery__WEBPACK_IMPORTED_MODULE_0___default()('li:even').css('background-color', 'pink')\r\n\r\n})\r\n\r\n\n\n//# sourceURL=webpack://change-rows-color/./src/index1.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n// 1.使用ES6 导入语法，导入jquery\r\n\r\n\r\n// 2.定义jquery入口函数\r\njquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {\r\n    // 3.实现奇偶行变色\r\n    jquery__WEBPACK_IMPORTED_MODULE_0___default()('li:odd').css('background-color', 'cyan')\r\n    jquery__WEBPACK_IMPORTED_MODULE_0___default()('li:even').css('background-color', 'blue')\r\n\r\n})\r\n\r\n\n\n//# sourceURL=webpack://change-rows-color/./src/index1.js?");
 
 /***/ })
 

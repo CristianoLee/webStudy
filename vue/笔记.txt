@@ -1,5 +1,11 @@
+标签名 + {$} * 数量  生成若干个div,$代表自增数字，如果输入3，则1,2,3
+示范：li{我是第$个li}*9 则会生成9个li
+
 npm i jquery -s 	下载jquery
-npm install webpack@5.42.1 webpack-cli@4.7.2 -D		下载webpack
+npm install webpack@5.42.1 webpack-cli@4.9.0 -D		下载webpack
 -i 	是 --init的简写
 -s 	是 --save的简写
--D 	是 --save-dev的简写									下载jquery
+-D 	是 --save-dev的简写	
+
+npm install webpack-dev-server@3.11.2 -D	下载webpack自动run dev插件
+npm install html-webpack-plugin@5.3.2 -D 	下载打开http首页就是index.html插件								下载jquery
