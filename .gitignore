@@ -1,0 +1,2 @@
+# 忽略所有目录名为node_module包
+node_modules/
