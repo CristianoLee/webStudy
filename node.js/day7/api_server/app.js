@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 const expressJWT = require('express-jwt')
 const config = require('./config')
 
+// unless/过滤器 表示哪些接口不需要访问权限，api 目录下的登录、注册不需要token就能直接访问（相当于java中的fliter过滤路径）
 app.use(expressJWT({ secret: config.jwtSecretKey }).unless({ path: [/^\/api/] }))
 
 // 导入并使用用户路由模块
@@ -38,12 +39,21 @@ app.use('/api', userRouter)
 const userinfoRouter = require('./router/userinfo')
 // 注意：以 /my 开头的接口，都是有权限的接口，需要进行 Token 身份认证
 app.use('/my', userinfoRouter)
+// 导入并使用文章分类的路由模块
+const artCateRouter = require('./router/artcate')
+app.use('/my/article', artCateRouter)
+// 导入并使用文章路由模块
+const articleRouter = require('./router/article')
+// 为文章的路由挂载统一的访问前缀 /my/article
+app.use('/my/article', articleRouter)
+
+
 
 // 定义错误级别的中间件
 app.use((err, req, res, next) => {
-    // 数据验证失败导致的错误
+    // 数据验证失败导致的错误 / 账号或密码出错
     if (err instanceof joi.ValidationError) return res.msg(err)
-    // 捕获身份认证失败的错误
+    // 捕获身份认证失败的错误/未登录
     if (err.name === 'UnauthorizedError') return res.msg('身份认证失败！')
     // 未知错误
     res.msg(err)

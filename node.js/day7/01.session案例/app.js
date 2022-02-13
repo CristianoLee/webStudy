@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }))
 // 登录的 API 接口
 app.post('/api/login', (req, res) => {
   // 判断用户提交的登录信息是否正确
+  console.log(req.body);
   if (req.body.username !== 'admin' || req.body.password !== '000000') {
     return res.send({ status: 1, msg: '登录失败' })
   }

@@ -2,6 +2,8 @@
 const joi = require(('@hapi/joi'))
 
 // 定义用户名和密码的验证规则
+// min 表示最小数字 max 表示最大数字 （不是表示长度）
+// required() 表示非空 integer 必须是整数 string 必须是字符串
 const username = joi.string().alphanum().min(1).max(10).required()
 const password = joi.string().pattern(/^[\S]{6,12}$/).required()
 
