@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="info.username">
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script src="./lib/jQuery v3.5.1.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                // 用户的信息对象
+                info: {
+                    username: 'admin'
+                }
+            },
+            // 所有侦听器，都应该被定义到 watch 节点下
+            watch: {
+                // 定义对象格式的侦听器
+                // info: {
+                //     handler(newVal) {
+                //         console.log(newVal);
+                //     },
+                //     immediate: true,
+                //     // 开启深度监听，只要对象中任何一个属性变化了，都会触发对象监听器
+                //     deep: true
+                // }
+                // 如果要侦听的是对象子属性的变化，则必须包裹一层单引号
+                'info.username': {
+                    handler(newVal) {
+                        $.get('https://www.escook.cn/api/finduser/' + newVal, function (res) {
+                            console.log(res);
+                        })
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
