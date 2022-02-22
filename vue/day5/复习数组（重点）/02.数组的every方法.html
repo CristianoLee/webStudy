@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [
+            { id: 1, name: '奔驰', state: true },
+            { id: 2, name: '宝马', state: true },
+            { id: 3, name: '奥迪', state: true }
+        ]
+
+        // 需求：判断数组中，车是否被全选了！
+        // every 只要数组中，布尔值有一项与其他项不相同，则返回那一项的布尔值
+        let result = arr.every(item => item.state)
+        console.log(result);
+    </script>
+</body>
+
+</html>

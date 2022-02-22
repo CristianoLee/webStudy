@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = ['小红', '小明', '小强', '小丽']
+        // forEach 循环一旦开始，无法在中间被停止（性能消耗大）
+        // arr.forEach((item, index) => {
+        //     console.log('ok');
+        //     if (item === '小明') {
+        //         return console.log(index);
+        //     }
+        // })
+
+        // some 如果找到对应项，循环可以被终止（性能更高）
+        arr.some((item, index) => {
+            console.log('ok');
+            if (item === '小明') {
+                console.log(index);
+                // 在找到对应项之后，可以通过 return ture 固定语法，来终止 some 循环
+                return true;
+            }
+        })
+    </script>
+</body>
+
+</html>

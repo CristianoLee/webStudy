@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [
+            { id: 1, name: '奔驰', state: true, price: 10, count: 1 },
+            { id: 2, name: '宝马', state: false, price: 8, count: 2 },
+            { id: 3, name: '奥迪', state: true, price: 9, count: 3 }
+        ]
+
+        // 需求：判断数组中，已勾选的车，总价累加起来！
+        let amt = 0 // 总价
+        // // filter 返回 true 或 等价于 true 的值的元素，创建一个新数组
+        // arr.filter(item => item.state).forEach(item => amt += item.price * item.count)
+        // console.log(amt);
+
+        // arr.filter(item => item.state).reduce((累加的结果,当前循环项)=>{},初始值)
+        let result = arr.filter(item => item.state).reduce((amt, item) => amt += item.price * item.count, 0)
+        console.log(result);
+    </script>
+</body>
+
+</html>
