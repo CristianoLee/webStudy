@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        ul {
+            position: relative;
+            margin: 100px auto;
+            width: 660px;
+            height: 30px;
+            background-color: #999;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        li {
+            float: left;
+            width: 120px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        li:hover {
+            background-color: red;
+            color: white;
+        }
+
+        .content {
+            margin: -100px auto;
+            width: 660px;
+            height: 200px;
+            background-color: pink;
+            text-align: center;
+        }
+
+        .content div {
+            display: none;
+            /* 隐藏所有div */
+        }
+    </style>
+
+    <script>
+        $(function () {
+            // 让第一个div显示
+            $('.content div:first').show();
+            // 鼠标经过li 相应的 div就会显示
+            $('ul li').mouseover(function () {
+                var index = $(this).index();// 获取当前li 下标
+                console.log(index);
+                // 让当前li 下标对应的 div 显示，兄弟元素不显示
+                $('.content div').eq(index).show().siblings().hide();
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>商品介绍</li>
+        <li>规格与包装</li>
+        <li>售后保障</li>
+        <li>商品评价</li>
+        <li>手机社区</li>
+    </ul>
+    <div class="content">
+        <div>内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+        <div>内容4</div>
+        <div>内容5</div>
+    </div>
+</body>
+
+</html>

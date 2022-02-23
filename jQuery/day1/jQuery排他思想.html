@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            // 1.隐式迭代 给所有按钮都绑定了点击事件
+            $('button').click(function () {
+                // 2.当前元素变化背景颜色
+                $(this).css('background', 'pink');
+                // 3.其余兄弟去掉背景颜色
+                $(this).siblings('button').css('background', '');
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+</body>
+
+</html>

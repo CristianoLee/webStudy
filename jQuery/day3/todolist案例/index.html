@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+    <link rel="stylesheet" href="css/todoList.css">
+    <script src="/jquery.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="head center">
+            <label for="title">ToDoList</label>
+            <input type="search" id="title" placeholder="添加todo">
+        </div>
+    </header>
+    <!-- 内容 -->
+    <div class="content center">
+        <!-- 未完成列表 -->
+        <h2>正在进行<span class="todoCount"></span></h2>
+        <ul class="incomplete">
+
+        </ul>
+        <!-- 已完成列表 -->
+        <h2>已经完成<span class="doneCount"></span></h2>
+        <ul class="complete">
+
+        </ul>
+    </div>
+    <!-- 底部 -->
+    <footer class="center">Copyright &copy; 2021 小猪仔版权所有
+    </footer>
+</body>
+
+</html>

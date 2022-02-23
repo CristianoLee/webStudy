@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        div {
+            width: 721px;
+            height: 455px;
+            margin: 100px auto;
+            position: relative;
+            background-color: blue;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400%;
+        }
+
+        li {
+            float: left;
+        }
+
+        .arrow {
+            position: relative;
+            top: 195.5px;
+            width: 35px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, .5);
+            text-align: center;
+            line-height: 55px;
+            color: black;
+            z-index: 2;
+            display: none;
+        }
+
+        .arrow:hover {
+            color: white;
+        }
+
+        .l {
+            float: left;
+        }
+
+        .r {
+            float: right;
+        }
+
+        ol {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+        }
+
+        ol li {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin: 0 10px 0 0;
+        }
+    </style>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            // 获取li长度
+            var ol = $('ol')[0];
+            var ul = $('ul');
+            var imgWidth = $('img').width();
+            var flag = true;
+            for (var i = 0; i < $('ul>li').length; i++) {
+                var li = document.createElement('li');
+                ol.appendChild(li);
+                li.setAttribute('index', i);
+            }
+
+            ol.children[0].style.backgroundColor = 'white';
+
+            $('div').hover(function () {
+                $('.arrow').show();
+                clearInterval(timer);
+                timer = null;
+            }, function () {
+                $('.arrow').hide();
+                timer = setInterval(function () {
+                    $('.r').click();
+                }, 2000)
+            })
+
+            for (var i = 0; i < ol.children.length; i++) {
+                ol.children[i].addEventListener('mouseenter', function () {
+                    for (var i = 0; i < ol.children.length; i++) {
+                        ol.children[i].style.backgroundColor = '';
+                    }
+                    this.style.backgroundColor = 'white';
+                    var index = this.getAttribute('index');
+                    circle = index;
+                    num = index;
+                    ul.stop().animate({
+                        left: -imgWidth * index
+                    }, 10);
+                })
+            }
+
+            var num = 0;
+            var circle = 0;
+            $('.l').click(function () {
+                if (flag) {
+                    flag = false;
+                    if (num == 0) {
+                        num = ul.children().length;
+                    }
+                    num--;
+                    ul.stop().animate({
+                        left: -imgWidth * num
+                    }, function () {
+                        flag = true;
+                    });
+                    circle--;
+                    if (circle < 0) {
+                        circle = ul.children().length - 1;
+                    }
+                    changeCircle();
+                }
+
+
+            });
+            $('.r').click(function () {
+                if (flag) {
+                    flag = false;
+                    if (num == ul.children().length - 1) {
+                        num = -1;
+                    }
+                    num++;
+                    ul.stop().animate({
+                        left: -imgWidth * num
+                    }, function () {
+                        flag = true;
+                    });
+                    circle++;
+                    if (circle > ul.children().length - 1) {
+                        circle = 0;
+                    }
+                    changeCircle();
+                }
+
+            });
+
+
+            function changeCircle() {
+                for (var i = 0; i < ol.children.length; i++) {
+                    ol.children[i].style.backgroundColor = '';
+                }
+                ol.children[circle].style.backgroundColor = 'white';
+            }
+
+            var timer = setInterval(function () {
+                $('.r').click();
+            }, 2000)
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <a class="arrow l" href="javascript:;">&lt;</a>
+        <a class="arrow r" href="javascript:;">&gt;</a>
+        <ul>
+            <li>
+                <a href=""><img src="images/focus.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="images/focus1.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="images/focus3.jpg" alt=""></a>
+            </li>
+        </ul>
+        <ol></ol>
+    </div>
+</body>
+
+</html>

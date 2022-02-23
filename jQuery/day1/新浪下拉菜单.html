@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .nav {
+            margin: 0 20px;
+            cursor: pointer;
+            width: 308px;
+            height: 100px;
+            box-sizing: border-box;
+            /* border: 1px solid black; */
+        }
+
+        .nav>li {
+            position: relative;
+            float: left;
+            width: 100px;
+            height: 100px;
+            /* border: 1px solid black; */
+            text-align: center;
+        }
+
+        .nav>li span {
+            display: block;
+            width: 100px;
+            background-color: pink;
+        }
+
+        .nav>li span:hover {
+            background-color: yellowgreen;
+        }
+
+        ul>li ul {
+            height: 25px;
+            display: none;
+        }
+
+        ul>li li:hover {
+            background-color: yellow;
+        }
+    </style>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            // 鼠标经过
+            $('.nav>li').mouseover(function () {
+                console.log(1);
+                $(this).children('ul').show();
+            })
+            // 鼠标离开
+            $('.nav>li').mouseout(function () {
+                $(this).children('ul').hide();
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>
+            <span>html</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </li>
+        <li>
+            <span>css</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </li>
+        <li>
+            <span>js</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>

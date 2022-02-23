@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/jquery.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="demo">发起不带参数的GET请求</button>
+    <button class="demo1">发起带参数的GET请求</button>
+    <button class="demo2">Post请求</button>
+    <button class="demo3">Ajax请求</button>
+    <script>
+        $(function () {
+            // 不带参数get请求
+            $('.demo').on('click', function () {
+                $.get('https://autumnfish.cn/comment/music', function (res) {
+                    console.log(res);
+                })
+            })
+            // 带参数get请求
+            $('.demo1').on('click', function () {
+                $.get('https://autumnfish.cn/search/', { keywords: '周杰伦' }, function (res) {
+                    console.log(res);
+                })
+            })
+            // post请求
+            $('.demo2').on('click', function () {
+                $.post('https://autumnfish.cn/search/', { keywords: '周杰伦' }, function (res) {
+                    console.log(res);
+                })
+            })
+            // ajax请求(通用：既可以是post也可以是get)
+            $('.demo3').on('click', function () {
+                // $.ajax({
+                //     type: 'get', // get
+                //     url: 'https://autumnfish.cn/search/',
+                //     data: {
+                //         keywords: '周杰伦'
+                //     },
+                //     success: function (res) {
+                //         console.log(res);
+                //     }
+
+                // })
+                $.ajax({
+                    type: 'post', // post
+                    url: 'https://autumnfish.cn/search/',
+                    data: {
+                        keywords: '周杰伦'
+                    },
+                    success: function (res) {
+                        console.log(res);
+                    }
+
+                })
+            })
+        })
+
+    </script>
+</body>
+
+</html>

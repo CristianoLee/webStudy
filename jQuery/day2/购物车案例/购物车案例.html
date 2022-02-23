@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: red;
+        }
+
+        .shop_car {
+            width: 800px;
+            height: 300px;
+            margin: 100px auto;
+        }
+
+        table {
+            width: 100%;
+            /* background-color: pink; */
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        thead {
+            background-color: #f3f3f3;
+        }
+
+        tbody tr {
+            border-top: 1px solid black;
+        }
+
+        tbody td {
+            margin-top: 100px;
+        }
+
+        tfoot {
+            background-color: #f3f3f3;
+        }
+
+        input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .amount_sum {
+            color: red;
+        }
+
+        .price_sum {
+            color: red;
+        }
+
+        .addbgc {
+            background-color: #fff4e8;
+        }
+    </style>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            // 1.当全选按钮勾选产生变化，其他所有复选按钮都会跟着一起变化
+            $('.checkAll').change(function () {
+                $('.check,.checkAll').prop('checked', $(this).prop('checked'));
+                if ($(this).prop('checked')) {
+                    $('tbody tr').addClass('addbgc');
+                } else {
+                    $('tbody tr').removeClass('addbgc');
+                }
+            })
+            // 2.当所有复选按钮都勾选了，所有全选按钮都会勾选
+            $('.check').change(function () {
+                if ($('.check:checked').length === $('tbody tr').length) {
+                    $('.checkAll').prop('checked', true);
+                } else {
+                    $('.checkAll').prop('checked', false);
+                }
+                if ($(this).prop('checked')) {
+                    $(this).parents('tr').addClass('addbgc');
+                } else {
+                    $(this).parents('tr').removeClass('addbgc');
+                }
+            })
+            // 3.增减商品数量，声明两个变量 cut 减少 add 增加
+            $('.cut').click(function () {
+                // 得到文本框里的值
+                var n = $(this).siblings('.ipt_num').val();
+                if (n <= 1) {
+                    n = 1;
+                    $(this).siblings('.ipt_num').val(n);
+                } else {
+                    n--;
+                    $(this).siblings('.ipt_num').val(n);
+                }
+                // 计算小计模块 根据文本框的值(数量) x 当前商品的价格 = 小计
+                var price = $(this).parent().siblings('.price').html();
+                price = price.substr(1);// 将单价前面的￥去除，变成数字再进行计算
+                // toFixed(2)保留小数点后两位
+                $(this).parent().siblings('.total').html('￥' + (price * n).toFixed(2));
+                getSum();
+            })
+            $('.add').click(function () {
+                // 得到文本框里的值
+                var n = $(this).siblings('.ipt_num').val();
+                if (n >= 9999) {
+                    n = 9999;
+                    alert('购买数量已超过最大值');
+                    $(this).siblings('.ipt_num').val(n);
+                } else if (n <= 0) {
+                    n = 1;
+                    $(this).siblings('.ipt_num').val(n);
+                } else {
+                    n++;
+                    $(this).siblings('.ipt_num').val(n);
+                }
+                // 计算小计模块 根据文本框的值(数量) x 当前商品的价格 = 小计
+                var price = $(this).parent().siblings('.price').html();
+                price = price.substr(1);// 将单价前面的￥去除，变成数字再进行计算
+                // toFixed(2)保留小数点后两位
+                $(this).parent().siblings('.total').html('￥' + (price * n).toFixed(2));
+                getSum();
+            })
+            // 4.用户修改文本框的值 计算小计模块
+            $('.ipt_num').change(function () {
+                var n = $(this).val();
+                var price = $(this).parent().siblings('.price').html();
+                price = price.substr(1);// 将单价前面的￥去除，变成数字再进行计算
+                // toFixed(2)保留小数点后两位
+                if (n <= 1) {
+                    $(this).parent().siblings('.total').html('￥' + price);
+                } else {
+                    $(this).parent().siblings('.total').html('￥' + (price * n).toFixed(2));
+                }
+                getSum();
+            })
+            getSum();
+            // 5.计算 总和、总金额模块
+            function getSum() {
+                var count = 0;// 总和
+                var money = 0;// 总金额
+                $('.ipt_num').each(function (i, e) {
+                    count += parseInt($(e).val());
+                });
+                $('.amount_sum').text(count);
+                $('.total').each(function (i, e) {
+                    money += parseFloat($(e).html().substr(1));
+                });
+                $('.price_sum').text(money.toFixed(2));
+            }
+            // 6.删除商品模块
+            // (1) 商品后面的删除按钮
+            $('.ipt_del').click(function () {
+                // 删除的是当前商品
+                $(this).parents('tr').remove();
+                getSum();
+            });
+            // (2) 删除选中的商品
+            $('.del').click(function () {
+                // 删除的是复选框中的商品
+                $('.check:checked').parents('tr').remove();
+                getSum();
+            });
+            // (3) 删除所有商品（清空购物车）
+            $('.delAll').click(function () {
+                $('tbody tr').remove();
+                getSum();
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="shop_car">
+        <table>
+            <thead>
+                <tr>
+                    <td><input type="checkbox" class="checkAll">全选</td>
+                    <td>商品</td>
+                    <td>单价</td>
+                    <td>数量</td>
+                    <td>小计</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><input type="checkbox" class="check"></td>
+                    <td><a href="javascript:;"><img src="images/p1.jpg" alt=""></a></td>
+                    <td class="price">￥12.60</td>
+                    <td>
+                        <button class="cut">-</button>
+                        <input type="text" value="1" class="ipt_num" maxlength="4">
+                        <button class="add">+</button>
+                    </td>
+                    <td class="total">￥12.60</td>
+                    <td><input type="button" value="删除" class="ipt_del"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="check"></td>
+                    <td><a href="javascript:;"><img src="images/p2.jpg" alt=""></a></td>
+                    <td class="price">￥24.80</td>
+                    <td>
+                        <button class="cut">-</button>
+                        <input type="text" value="1" class="ipt_num" maxlength="4">
+                        <button class="add">+</button>
+                    </td>
+                    <td class="total">￥24.80</td>
+                    <td><input type="button" value="删除" class="ipt_del"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="check"></td>
+                    <td><a href="javascript:;"><img src="images/p3.jpg" alt=""></a></td>
+                    <td class="price">￥36.00</td>
+                    <td>
+                        <button class="cut">-</button>
+                        <input type="text" value="1" class="ipt_num" maxlength="4">
+                        <button class="add">+</button>
+                    </td>
+                    <td class="total">￥36.00</td>
+                    <td><input type="button" value="删除" class="ipt_del"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+
+                <tr>
+                    <td><input type="checkbox" class="checkAll">全选</td>
+                    <td><a href="javascript:;" class="del">删除选中的商品</a></td>
+                    <td><a href="javascript:;" class="delAll">清空购物车</a></td>
+                    <td>已选中<span class="amount_sum"></span>件商品</td>
+                    <td>总价<span class="price_sum"></span></td>
+                    <td><button>去结算</button></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+
+</html>

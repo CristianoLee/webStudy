@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .nav {
+            margin: 100px 20px;
+            cursor: pointer;
+            width: 308px;
+            height: 100px;
+            box-sizing: border-box;
+            /* border: 1px solid black; */
+        }
+
+        .nav>li {
+            position: relative;
+            float: left;
+            width: 100px;
+            height: 100px;
+            /* border: 1px solid black; */
+            text-align: center;
+
+        }
+
+        .nav>li span {
+            display: block;
+            width: 100px;
+            background-color: pink;
+        }
+
+        .nav>li span:hover {
+            background-color: #999;
+        }
+
+        ul>li ul {
+            display: none;
+            background-color: yellowgreen;
+        }
+
+        ul>li li {
+            height: 50px;
+        }
+
+        ul>li li:hover {
+            background-color: yellow;
+        }
+
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+            display: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            // 滑动效果中包含三个参数（speed速度,easing切换效果,fn回调函数）
+            $('button').eq(0).click(function () {
+                $('div').slideDown();
+            });
+            $('button').eq(1).click(function () {
+                $('div').slideUp();
+            });
+            $('button').eq(2).click(function () {
+                $('div').slideToggle();
+            });
+
+            // 事件切换 hover 鼠标经过和离开的符合写法
+            // $('.nav>li').hover(function () {
+            //     $(this).children('ul').slideDown();
+            // }, function () {
+            //     $(this).children('ul').slideUp();
+            // })
+
+            // 优化写法
+            $('.nav>li').hover(function () {
+                // stop停止动画
+                // 如果鼠标疯狂经过离开，动画会不断生成直到所有动画结束
+                $(this).children('ul').stop().slideToggle();
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <button>下拉滑动</button>
+    <button>上拉滑动·</button>
+    <button>切换滑动</button>
+    <div></div>
+
+    <ul class="nav">
+        <li>
+            <span>html</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </li>
+        <li>
+            <span>css</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </li>
+        <li>
+            <span>js</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>

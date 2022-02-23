@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 将JSON字符串转化为JS对象
+        var jsonStr = '{"name":"张三","age":18}';
+        var obj = JSON.parse(jsonStr);
+        console.log(obj);
+
+        console.log('------------------');
+
+        // 将JS对象转化为JSON字符串
+        var obj2 = { name: '李四', age: 18 };
+        var jsonStr2 = JSON.stringify(obj2);
+        console.log(jsonStr2);
+        console.log(typeof jsonStr2);
+    </script>
+</body>
+
+</html>

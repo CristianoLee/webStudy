@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <button onclick="test()">发送请求</button>
+    </div>
+    <script>
+        function test() {
+            // get请求
+            // 1.创建http请求对象 xhr
+            // var xhr = new XMLHttpRequest();
+            // // 2.指定请求的类型、URL 以及是否异步处理请求。
+            // xhr.open("get", "http://www.liulongbin.top:3006/api/getbooks", true);
+            // // 3.将请求发送到服务器。
+            // xhr.send();
+            // // 4.服务器的返回结果
+            // // onreadystatechange返回结果
+            // xhr.onreadystatechange = function () {
+            //     // readyState xhr对象请求状态，status 服务器响应状态
+            //     if (this.readyState == 4 && this.status == 200) {
+            //         // responseText服务器响应的数据
+            //         console.log(xhr.responseText);
+            //     }
+            // };
+
+            // post请求 (多了一个步骤)
+            // 1.创建http请求对象 xhr
+            var xhr = new XMLHttpRequest();
+            // 2.指定请求的类型、URL 以及是否异步处理请求。
+            xhr.open("post", "http://www.liulongbin.top:3006/api/addbook", true);
+            // 3.设置Content-Type属性(固定写法)
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            // 4.将请求发送到服务器。
+            xhr.send('bookname=水浒传&author=施耐庵&publisher=上海图书出版社');
+            // onreadystatechange函数获取请求服务器的返回结果
+            xhr.onreadystatechange = function () {
+                // readyState xhr对象请求状态，status 服务器响应状态
+                if (this.readyState == 4 && this.status == 200) {
+                    // responseText服务器响应的数据
+                    console.log(xhr.responseText);
+                }
+            };
+
+        }
+
+    </script>
+</body>
+
+</html>

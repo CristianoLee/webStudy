@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <style>
+    </style>
+    <script>
+        $(function () {
+            // 用原生JS获取的对象是DOM对象
+            var div = document.querySelector('div');
+            // 用jQuery获取的对象是jQuery对象
+            $('div');//jQuery对象的本质是：利用$对DOM对象包装后产生的对象（伪数组形式存储）
+            // div.hide();DOM对象无法操作jQuery里的方法
+            // $('div').style.backgroundColor = 'red';jQuery对象也无法操作DOM
+            // 但是，DOM和jQuery对象是可以相互转换的
+            $(div);// 这就是直接将JS获取的div直接转换为jquery对象
+            $('div')[0];// 这就是将获取的jquery对象转化为DOM对象
+        })
+    </script>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>

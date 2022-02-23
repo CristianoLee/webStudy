@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            $('div').on({
+                'click': function () {
+                    console.log('鼠标点击了');
+                }, mouseover: function () {
+                    console.log('鼠标经过了');
+                }
+            })
+            $('ul').on('click', 'li', function () {
+                console.log('点击了li');
+            })
+            // 1.事件解绑 off
+            $('div').off('click'); // 解除了div的点击事件
+            $('ul').off('click', 'li');
+            // 2.one() 绑定事件，但它只触发事件一次
+            $('p').one('click', function () {
+                console.log(666);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div></div>
+    <ul>
+        <li>小猪仔</li>
+        <li>小猪仔</li>
+        <li>小猪仔</li>
+        <li>小猪仔</li>
+        <li>小猪仔</li>
+    </ul>
+    <p>我是p标签</p>
+</body>
+
+</html>

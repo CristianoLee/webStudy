@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            // 针对同一类元素做不同步操作 需要用到遍历元素（类似for，但比for强大）
+            // 1. each() 遍历元素
+            var arr = ['red', 'green', 'blue'];
+            var sum = 0;
+            $('div').each(function (index, domEle) {
+                // 回调函数第一个参数一定是索引号 可以自己命名索引号名称
+                console.log(index);
+                // 回调函数第二个参数一定是 dom元素对象 所以要把它转换为jquery对象
+                console.log(domEle);
+                // 转化为jquery对象就可以使用jquery方法了
+                $(domEle).css('color', arr[index]);
+                sum += parseInt($(domEle).html());
+            })
+            console.log(sum);
+            // 2. $.each() 遍历元素 主要用于遍历数据，处理数据，例如对象，数组的遍历
+            $.each($('div'), function (i, e) {
+                console.log(i);
+                console.log(e);
+            });
+            $.each(arr, function (i, e) {
+                console.log(i);
+                console.log(e);
+            })
+            $.each({
+                name: 'andy',
+                age: 18
+            }, function (i, e) {
+                console.log(i);
+                console.log(e);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</body>
+
+</html>

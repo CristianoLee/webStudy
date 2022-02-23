@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            // 孙子查找爷爷 parent()查找父元素
+            var grandFather = $('.son').parent().parent();
+            console.log(grandFather);
+            // 儿子查找爸爸
+            var father = $('.son').parent();
+            console.log(father);
+
+            // 爷爷查找儿子
+            var father = $('.grandFather').children();
+            console.log(father);
+            // 爷爷查找孙子 children()// 相当于CSS中的子代选择器
+            var son = $('.grandFather').children().children();
+            console.log(son);
+            // 爷爷查找儿子和孙子 find()// 相当于CSS中的后代选择器
+            var sonAndFather = $('.grandFather').find('div');
+            console.log(sonAndFather);
+
+            // .siblings兄弟元素。将除了item以外它的所有兄弟元素变红
+            $('ul .item').siblings('li').css('color', 'red');
+            // 选择li下标为2的元素变蓝，与选择器eq相同，但是eq方法里的索引号不是写死的，可以存放变量后期可以改变
+            $('ul li').eq(2).css('color', 'blue');// eq(var index)
+            // hasClass()判断是否有某个类名
+            console.log($('div').eq(3).hasClass('gtq'));// 判断下标为3的div，也就是第4个div是否有gtq这个类名，如果有就返回true
+        })
+    </script>
+</head>
+
+<body>
+    <div class="grandFather">
+        爷爷
+        <div class="father">
+            爸爸
+            <div class="son">儿子</div>
+        </div>
+    </div>
+
+    <ul>
+        <li>我是li</li>
+        <li>我是li</li>
+        <li class="item">我是li</li>
+        <li>我是li</li>
+        <li>我是li</li>
+    </ul>
+
+    <div>熊大</div>
+    <div class="gtq">光头强</div>
+    <div>熊二</div>
+
+</body>
+
+</html>

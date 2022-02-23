@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        img {
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 节流的概念是：当不断进行一件事情的时候，给它设置一定的时间间隔，防止消耗资源
+        比如：鼠标不停快速点击一件事，就会不断触发事件，造成资源消耗。
+        我们可以通过节流的方式节省资源损耗。
+    -->
+    <img src="images/angel.gif">
+    <script>
+        $(function () {
+            // 1.获取图片
+            var angel = $('img');
+            var timer = null; // 节流阀
+            // 2.绑定鼠标移动事件
+            $(document).on('mousemove', function (e) {
+                // 3.设置图片位置
+                if (timer) return; // 如果节流阀为空则return出去，不执行下面代码
+                timer = setTimeout(function () {
+                    angel.css('top', e.pageY - 40 + 'px').css('left', e.pageX - 48 + 'px')
+                    console.log('ok');
+                    timer = null;
+                }, 16)
+            })
+        })
+    </script>
+</body>
+
+</html>

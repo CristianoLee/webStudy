@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 将数据转化为查询字符串的形式 例如 api/id=666&bookname='水浒传'
+        function resolveData(data) {
+            var arr = [];
+            for (let k in data) {
+                let str = k + '=' + data[k];
+                arr.push(str);
+            }
+            return arr.join('&');
+        }
+
+        // 封装自己的ajax函数
+        function itheima(options) {
+            var xhr = new XMLHttpRequest();
+            var qs = resolveData(options.data);
+
+            if (options.method === 'get' || options.method.toUpperCase() === 'GET') { // 发送get请求
+                xhr.open(options.method, options.url + '?' + qs);
+                xhr.send();
+            } else if (options.method === 'post' || options.method.toUpperCase() === 'POST') { // 发送post请求
+                xhr.open(options.method, options.url);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(qs);
+            }
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var result = JSON.parse(xhr.responseText);
+                    options.success(result);
+                }
+            }
+        }
+
+        // 演示
+        // get
+        // itheima({
+        //     method: 'GET',
+        //     url: 'http://www.liulongbin.top:3006/api/getbooks',
+        //     data: {
+        //         id: 6092
+        //     },
+        //     success: function (res) {
+        //         console.log(res);
+        //     }
+        // })
+
+        // post
+        itheima({
+            method: 'post',
+            url: 'http://www.liulongbin.top:3006/api/addbook',
+            data: {
+                bookname: '西游记',
+                author: '罗贯中',
+                publisher: '上海图书出版社'
+            },
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    </script>
+</body>
+
+</html>

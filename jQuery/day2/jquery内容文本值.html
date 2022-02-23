@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            // 1.获取设置元素内容 html()
+            console.log($('div').html());
+            $('div').html('我是天才');
+
+            // 2.获取设置元素文本内容 text()
+            console.log($('span').text());
+            $('span').text('abc');
+
+            // 3.获取设置表单值 val()
+            console.log($('input').val());
+            $('input').val('我们都不错');
+        })
+    </script>
+</head>
+
+<body>
+    <div>我是猪</div>
+    <span>123</span>
+    <input type="text" value="不错">
+</body>
+
+</html>

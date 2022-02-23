@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <title>Document</title>
+</head>
+
+<body style="padding: 15px;">
+    <div id="app">
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>书籍ID</th>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>书籍类型</th>
+                    <th>书籍图片</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="app">
+                <tr v-for="item in bookList">
+                    <td>{{item.bid}}</td>
+                    <td>{{item.bookName}}</td>
+                    <td>{{item.bookAuthor}}</td>
+                    <td>{{item.bookType}}</td>
+                    <td>{{item.bookImage.bookImage_name}}</td>
+                    <td><a href="javascript:;" @click="deleteBook(item.bid)">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="../jquery.js"></script>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                bookList: []
+            },
+            created() {
+                this.getBookList();
+            },
+            methods: {
+                // 获取图书列表
+                getBookList() {
+                    var that = this;
+                    $.post('http://localhost:8080/bigTest/BookList', function (res) {
+                        console.log(res);
+                        that.bookList = res;
+                    })
+                },
+                // 删除图书
+                deleteBook(bid) {
+                    var that = this;
+                    console.log(bid);
+                    $.post('http://localhost:8080/bigTest/DeleteBookById', { 'bid': bid }, function (res) {
+                        console.log(res);
+                        that.getBookList();
+                    })
+                }
+
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

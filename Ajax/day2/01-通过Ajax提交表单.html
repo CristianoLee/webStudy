@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+</head>
+
+<body>
+    <!-- 如果提交文件，必须设置enctype属性为multipart/form-data
+        如果不设置，文件则无法上传
+        get：明文传输，少量数据
+        post:密文传输，大量数据包括文件的上传
+    -->
+    <form action="/login" id="test">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <button type="submit">提交</button>
+    </form>
+
+    <!-- 通过Ajax提交表单可以避免发生表单同步提交
+        举个例子：如果你直接点击提交表单，跳转页面后会丢失提交前的数据，
+        你点击返回，之前的数据会清空，你需要重新输入，造成用户体验感不好
+        Ajax可以实现当前页面不跳转就完成数据的提交
+    -->
+    <script>
+        $(function () {
+            // 第一种方式
+            // e.preventDefault阻止元素发生默认行为(阻止提交)
+            // $('#test').submit(function (e) {
+            //     alert('监听到表单提交事件');
+            //     e.preventDefault();
+            //     // serialize()获取表单中所有元素的值
+            //     let data = $(this).serialize();
+            //     console.log(data);
+            // })
+
+            // 第二种方式
+            $('#test').on('submit', function (e) {
+                alert('监听到表单提交事件2');
+                e.preventDefault();
+                // serialize()获取表单中所有元素的值
+                let data = $(this).serialize();
+                console.log(data);
+            })
+        })
+    </script>
+</body>
+
+</html>

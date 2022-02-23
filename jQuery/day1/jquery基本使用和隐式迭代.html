@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <style>
+
+    </style>
+    <script>
+
+        // $(function ()等页面dom加载完后再执行
+        $(function () {
+            // jquery隐式迭代机制，因为它是一个伪数组形式，因此不需要for循环就可以获取所有div
+            $('div').css('background', 'pink');
+            // jquery和$等价，相当于js中的window，属于顶级对象
+            jQuery("ul li").css({
+                'color': 'red',
+                'background': 'pink'
+            });
+        })
+    </script>
+</head>
+
+<body>
+
+    <div>惊喜不，意外不</div>
+    <div>惊喜不，意外不</div>
+    <div>惊喜不，意外不</div>
+    <div>惊喜不，意外不</div>
+    <ul>
+        <li>相同的操作</li>
+        <li>相同的操作</li>
+        <li>相同的操作</li>
+    </ul>
+    <script>
+        // 以前的js原生代码需要写四行才能实现
+        // var div = document.querySelectorAll('div');
+        // for (var i = 0; i < div.length; i++) {
+        //     div[i].style.backgroundColor = 'pink';
+        // }
+    </script>
+</body>
+
+</html>

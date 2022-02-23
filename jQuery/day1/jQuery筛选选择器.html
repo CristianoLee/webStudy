@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jquery.js"></script>
+    <script>
+        $(function () {
+            $('ul li:first').css('color', 'red');// ul中的第一个li变红
+            $('ul li:last').css('color', 'blue');// ul中的最后一个li变蓝
+            // nth和eq效果相同
+            $('ul li:eq(2)').css('color', 'green');// ul中下标为2的li变绿
+            $('ul li:nth(2)').css('color', 'green');// ul中下标为2的li变绿
+            $('ol li:odd').css('color', 'pink');// odd索引号奇数元素
+            $('ol li:even').css('color', 'yellowgreen');// even索引号偶数元素
+        })
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>多个里面筛选几个</li>
+        <li>多个里面筛选几个</li>
+        <li>多个里面筛选几个</li>
+        <li>多个里面筛选几个</li>
+        <li>多个里面筛选几个</li>
+    </ul>
+    <ol>
+        <li>小猪头下标为0偶数行</li><!-- 下标为0偶数行 -->
+        <li>小猪头下表为1奇数行</li>
+        <li>小猪头下标为2偶数行</li>
+        <li>小猪头下表为3奇数行</li>
+        <li>小猪头下标为4偶数行</li>
+    </ol>
+</body>
+
+</html>
